@@ -1,0 +1,59 @@
+:root {
+  --fondo: #f3f6fa;
+  --superficie: #ffffff;
+  --borde: #d9e1ec;
+  --texto: #1b2a3d;
+  --texto-suave: #63748a;
+  --primario: #1765d1;
+  --primario-suave: #e3eefc;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  color: var(--texto);
+  background: var(--fondo);
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+button, input, select { font-family: inherit; }
+
+.card {
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 1px 2px rgba(15, 30, 60, .04);
+}
+
+/* Colores por modalidad (badges y chips) */
+.badge {
+  display: inline-block; min-width: 40px; text-align: center; font-size: .7rem; font-weight: 700;
+  padding: 3px 6px; border-radius: 6px; color: #fff; letter-spacing: .02em;
+}
+.mod-RX  { --mod: #5b6b80; }
+.mod-ECO { --mod: #0f8a6c; }
+.mod-TC  { --mod: #1765d1; }
+.mod-RM  { --mod: #7b3fc4; }
+.mod-MG  { --mod: #c2417a; }
+.mod-MN  { --mod: #c46a12; }
+.mod-DXA { --mod: #8a7b16; }
+.mod-FL  { --mod: #b23b3b; }
+.mod-OTRA { --mod: #4a5568; }
+.badge[class*='mod-'] { background: var(--mod); }
+.chip.chip[class*='mod-'] { border-color: color-mix(in srgb, var(--mod) 45%, white); color: var(--mod); font-weight: 600; }
+.chip.chip[class*='mod-'].on { background: var(--mod); border-color: var(--mod); color: #fff; }
+
+/* Hoja impresa de procedimientos fuera de la red: solo se ve al imprimir */
+.impresion { display: none; }
+@media print {
+  body * { visibility: hidden; }
+  .impresion, .impresion * { visibility: visible; }
+  .impresion { display: block; position: absolute; inset: 0 auto auto 0; width: 100%; padding: 12mm; color: #000; background: #fff; font-size: 11pt; }
+  .impresion h1 { font-size: 15pt; margin: 0 0 8px; }
+  .impresion .datos { display: flex; flex-wrap: wrap; gap: 4px 18px; margin: 0 0 8px; }
+  .impresion .nota { margin: 0 0 12px; padding: 6px 10px; border: 1.5px solid #e07b00; border-radius: 4px; }
+  .impresion table { width: 100%; border-collapse: collapse; }
+  .impresion th, .impresion td { border: 1px solid #999; padding: 5px 7px; text-align: left; vertical-align: top; }
+  .impresion th { background: #eee; }
+  .impresion td:nth-child(2), .impresion td:nth-child(3) { white-space: nowrap; }
+  .impresion .firma { margin-top: 28mm; display: flex; justify-content: flex-end; }
+  .impresion .firma span { border-top: 1px solid #000; padding-top: 4px; min-width: 70mm; text-align: center; }
+  @page { margin: 10mm; }
+}
